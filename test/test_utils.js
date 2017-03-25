@@ -156,7 +156,7 @@ function parseTreeConstructionTestData(testSet, treeAdapter) {
         return {
             input: descr['#data'].join('\r\n'),
             expected: descr['#document'].join('\n'),
-            expectedErrors: descr['#errors'],
+            expectedErrors: descr['#new-errors'] || [],
             disableEntitiesDecoding: !!descr['#disable-html-entities-decoding'],
             fragmentContext: createFragmentContext(fragmentContextTagName, treeAdapter)
         };
