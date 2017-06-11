@@ -144,12 +144,6 @@ function parseTreeConstructionTestData(testSet, treeAdapter) {
             curDescr[curDirective].push(line);
     });
 
-    // NOTE: skip tests with the scripting disabled, since we are always act as the
-    // interactive user agent.
-    testDescrs = testDescrs.filter(function (descr) {
-        return !descr['#script-off'];
-    });
-
     return testDescrs.map(function (descr) {
         var fragmentContextTagName = descr['#document-fragment'] && descr['#document-fragment'][0];
 
@@ -159,6 +153,7 @@ function parseTreeConstructionTestData(testSet, treeAdapter) {
             expectedErrors: descr['#new-errors'] || [],
             disableEntitiesDecoding: !!descr['#disable-html-entities-decoding'],
             lineNum: descr['#line'],
+            scriptingEnabled: !descr['#script-off'],
             fragmentContext: createFragmentContext(fragmentContextTagName, treeAdapter)
         };
     });
